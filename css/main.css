@@ -11,15 +11,7 @@ body{
     justify-content: center;
 
 }
-/*main{
-    height: 95vh;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-}*/
+
 div {
     gap:2px;
     background-color:green;
