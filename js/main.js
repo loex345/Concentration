@@ -1,4 +1,5 @@
 /*----- constants -----*/ 
+const cards=[];
 /*----- app's state (variables) -----*/
  let card={};
  let gameStatus;
@@ -7,10 +8,19 @@
 /*----- cached element references -----*/ 
 /*----- event listeners -----*/ 
 /*----- functions -----*/
-Infinity();
+init();
 function init(){
+ card={
+    cardsMatched:0,
+    cardsVisible:'False',
+    cardsShuffled:'method'
+    }
+    gameStatus=null;
+    currentGameScore=0;
+    highScore=0;
+ }
+render();
 
-}
 function render(){
-    
+
 }
