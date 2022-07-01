@@ -7,3 +7,10 @@
 /*----- cached element references -----*/ 
 /*----- event listeners -----*/ 
 /*----- functions -----*/
+Infinity();
+function init(){
+
+}
+function render(){
+    
+}
