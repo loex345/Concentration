@@ -12,7 +12,7 @@ init();
 function init(){
  card={
     cardsMatched:0,
-    cardsVisible:'False',
+    cardsVisible:'false',
     cardsShuffled:'method'
     }
     gameStatus=null;
