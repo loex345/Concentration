@@ -7,7 +7,7 @@ let highScore;
 /*----- cached element references -----*/ 
 const playButton=document.getElementById('Play');
 const allDivImgs=document.querySelectorAll('main div img');
-const allDiv=document.querySelector('div');
+const allDivs=document.querySelectorAll('div');
 /*----- event listeners -----*/ 
 playButton.addEventListener('click',handleClick);
 /*----- functions -----*/
@@ -29,25 +29,34 @@ function init() {
 function randamNumGen(max) {
       return Math.floor(Math.random()*max);
       }
-      function render(){
+function render(){
+      //Render game board
       renderGameImgs();
-   } 
+      //to accept Userclicks for matches
+      
+} 
 
 function renderGameImgs(){
       
    }
 function handleClick(evt) {
-   const trackEvt= evt.target;
-   //get ramdom number for ids
+ const trackEvt= evt.target;
+      //get ramdom number for ids
    allDivImgs.forEach(function(allDivImg){
-      //generate new number based on imgs card length
-      let imgId=randamNumGen(cards.imgs.length);
-      //render cards to board using 
-      console.log(cards.imgs[imgId]);
-      allDivImg.setAttribute("src",cards.imgs[imgId]);
-      // TODO hide image until clicked
- });
-
+       //generate new number based on imgs card length
+   let imgId=randamNumGen(cards.imgs.length);
+         //render cards to board using 
+   console.log(cards.imgs[imgId]);
+   allDivImg.setAttribute("src",cards.imgs[imgId]);
+         // TODO hide image until clicked
+   allDivImg.style.visibility='hidden';
+       //FIX THIS LINE IN THE MORNING
+      });
+      // to add the placeholder
+    allDivs.forEach(function(allDiv){
+      allDiv.classList.add('placeholder');
+      allDiv.textContent="Inplay";
+      console.log('I am working!')
+    });
  render();
-
 }

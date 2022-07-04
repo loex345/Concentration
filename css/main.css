@@ -17,9 +17,6 @@ div {
     background-size:contain;
     background-repeat: no-repeat;
     
-    
-
-    
 
 }
 .box{
@@ -38,5 +35,6 @@ h1{
     text-align: center;
 }
 .placeholder{
-    background-image:'css/img/placeholder.png';
+    background-image:url("img/placeholder.png");
+    color: transparent;
 }
