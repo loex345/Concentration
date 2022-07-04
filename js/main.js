@@ -14,8 +14,7 @@ playButton.addEventListener('click',handleClick);  // for rendering the board
 mainEl.addEventListener('click',handleUserClick); // for user interaction
 /*----- functions -----*/
 init();
-
-   function init() {
+function init() {
       cards= {
          cardsMatched:0,
          cardsVisible:'false',
@@ -25,33 +24,33 @@ init();
          gameStatus=null;
          currentGameScore=0;
          highScore=0;
-         render();
-   }
-
-   function randamNumGen(max) {
+         render(); 
+}
+0
+function randamNumGen(max) {
          return Math.floor(Math.random()*max);
          }
-   function render(){
+function render() {
          //Render game board
          renderGameImgs();
          //to accept Userclicks 
          renderPlayerClicks()
    } 
-   function renderPlayerClicks() {
+function renderPlayerClicks() {
 
    }
 
-   function renderGameImgs(){
+function renderGameImgs(){
          
-      }
-   function handleClick(evt) {
+   }
+      
+function handleClick(evt) {
    const trackEvt= evt.target;
          //get ramdom number for ids
       allDivImgs.forEach(function(allDivImg){
          //generate new number based on imgs card length
       let imgId=randamNumGen(cards.imgs.length);
             //render cards to board using 
-      console.log(cards.imgs[imgId]);
       allDivImg.setAttribute("src",cards.imgs[imgId]);
             // hide image until clicked
       allDivImg.style.visibility='hidden'; //to do take away the hidden files
@@ -59,20 +58,18 @@ init();
          // to add the placeholder
    allDivs.forEach(function(allDiv){
          allDiv.classList.add('placeholder');
-         //allDiv.textContent="Inplay";
          console.log('I am working!')
       });
    render();
-   } 
+} 
 
-   function handleUserClick(evt){
+function handleUserClick(evt) {
       //remove class on click
       evt.target.classList.remove('placeholder');
       //remove hidden
       if(evt.target.tagName==='DIV'){
-        document.querySelector('img').style.visibility='visible';
+        document.querySelector('img').style.visibility='visible'; //only works once
       }
       console.log(evt.target.tagName);
-      return;
       render();
-   }
+}
