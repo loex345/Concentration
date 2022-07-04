@@ -14,7 +14,12 @@ body{
 
 div {
     gap:2px;
-    background-color:green;
+    background-size:contain;
+    background-repeat: no-repeat;
+    
+    
+
+    
 
 }
 .box{
@@ -31,4 +36,7 @@ div {
 }
 h1{
     text-align: center;
+}
+.placeholder{
+    background-image:'css/img/placeholder.png';
 }
