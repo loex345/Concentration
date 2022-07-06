@@ -1,13 +1,13 @@
 /*----- constants -----*/ 
 const MAX_WRONG_GUESSES = 4;
 const PLACE_CARD ='https://i.imgur.com/YcXGjgE.png';
-const GAME_PICS = [{img:'https://i.imgur.com/Pg2Fdbb.png', match:'false'},
-{img:'https://i.imgur.com/29fSWXu.png', match:'false'},
-{img:'https://i.imgur.com/Sv44SEP.jpg', match:'false'},
-{img:'https://i.imgur.com/GCkcUeQ.jpg', match:'false'},
-{img:'https://i.imgur.com/9uJxWtF.png', match:'false'},
-{img:'https://i.imgur.com/GwyUXfy.jpg', match:'false'},
-{img:'https://i.imgur.com/yHFSBDq.jpg', match:'false'}
+const GAME_PICS = [{img:'https://i.imgur.com/Pg2Fdbb.png', match:false, showing:false},
+{img:'https://i.imgur.com/29fSWXu.png', match:false, showing:false},
+{img:'https://i.imgur.com/Sv44SEP.jpg', match:false, showing:false},
+{img:'https://i.imgur.com/GCkcUeQ.jpg', match:false, showing:false},
+{img:'https://i.imgur.com/9uJxWtF.png', match:false, showing:false},
+{img:'https://i.imgur.com/GwyUXfy.jpg', match:false, showing:false},
+{img:'https://i.imgur.com/yHFSBDq.jpg', match:false, showing:false}
 ]
 /*----- app's state (variables) -----*/
 let cards=[]; //object to record card informaton 
@@ -44,7 +44,7 @@ function getShufflePicts(){
          let tempCards=[];
          let cards=[];
          GAME_PICS.forEach(function(game_pic){
-            tempCards.push(game_pic, game_pic);
+            tempCards.push({...game_pic}, {...game_pic});
          });
          while (tempCards.length){
             let rIdx = randamNumGen(tempCards.length);
@@ -60,12 +60,23 @@ function render() {
    imgsbyId.src=srcLnk;
         });
          //to accept Userclicks 
-         renderPlayerClicks();
+      renderPlayerClicks();
+    
    } 
 function renderPlayerClicks(evt) {
-  
+  //get id click
+  let lnk=evt;
+   // if clicked render for that image 
+   if(lnk.target.tagName ==='IMG') {
+      let source = lnk.target.getAttribute('id');
+      // source of image
+      let newSrc = cards[source].img;
+      lnk.target.src = newSrc;
+      newSrc = cards
+   } else {
+      console.log('Not a image');
    }
-
+}
       
 function handleClick(evt) { //replay button
      
