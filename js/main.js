@@ -65,17 +65,34 @@ function render() {
    } 
 function renderPlayerClicks(evt) {
   //get id click
-  let lnk=evt;
+  let lnk = evt;
+  let showProp;
+  const card = cards[lnk.target.id];
    // if clicked render for that image 
-   if(lnk.target.tagName ==='IMG') {
-      let source = lnk.target.getAttribute('id');
-      // source of image
-      let newSrc = cards[source].img;
-      lnk.target.src = newSrc;
-      newSrc = cards
-   } else {
-      console.log('Not a image');
-   }
+   if(lnk.target.tagName !=='IMG')return;
+    if(firstCard){
+       if(firstCard.img === card.img){
+        firstCard.match=true;
+        card.match=true;
+        currentGameScore++
+      } else{
+       wrongGuesses++  
+      }
+      firstCard=null;
+    } else{
+      firstCard = card;
+    }
+    //TODO Put in Winning Logic 
+   //    let source = lnk.target.getAttribute('id');
+   //    // source of image
+   //    let newSrc = cards[source].img;
+   //    lnk.target.src = newSrc;
+   //    //set property to showing true;
+   //    let showProp = cards[source].showing=true;
+
+   //    // 
+   // }
+   render();
 }
       
 function handleClick(evt) { //replay button
