@@ -5,6 +5,7 @@
 }
 
 body {
+    background-color: aliceblue;
     font-family: Helvetica, sans-serif;
     font-weight: 300;
     height: 100vh;
@@ -18,16 +19,17 @@ div {
     background-repeat: no-repeat;
 
 
+
 }
 
 .box {
-    background-color: aliceblue;
     display: grid;
     justify-content: center;
     align-items: center;
     padding: 20px;
     font-size: 70px;
     flex-wrap: wrap;
+    margin-left: 40px;
     gap: 4px;
     grid-template-columns: repeat(2, 0.2fr 0.2fr);
     grid-template-rows: repeat(2, 0.5fr);
@@ -36,6 +38,7 @@ div {
 
 h1 {
     text-align: center;
+    margin: 10px;
 }
 
 img {
@@ -43,3 +46,18 @@ img {
     border-radius: 3vmin;
 }
 
+button {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(178, 211, 251);
+  color: black; 
+  padding: 15px 32px;
+
+}
+
+p{
+    text-align: center;
+    margin: 5px;
+}

@@ -41,7 +41,7 @@ function init() {
    currentGameScore = 0;
    highScore = 0;
    ignoreClick=false;
-
+   msgBox.textContent='';
    render();
 }
 function getrandamNumGen(max) {
@@ -100,12 +100,11 @@ function handlePlayerClicks(evt) {
 
 function renderMsg(){
    //add scores
-   msgBoxThree.textContent=`Guess count :${wrongGuesses}  Guesses available:${MAX_WRONG_GUESSES}`;
+   msgBoxThree.textContent=`Guess count :${wrongGuesses}  Guesses available:${MAX_WRONG_GUESSES+1}`;
     if(gameStatus === 'P' ){
       msgBoxTwo.textContent =`Current Score : ${currentGameScore}`;
     }else if (gameStatus === 'L') {
       msgBox.textContent ='Game is over!';
-      currentGameScore = 0;
     }else if(gameStatus === 'W'){
       msgBox.textContent='Hold your wallets we have a Winner!' 
    }
@@ -116,7 +115,6 @@ function getGameStatus(){
    const isWinner = cards.every(function(card) {
           return card.match;
    });
-   console.log(isWinner);
    if (isWinner) return 'W';
    if(wrongGuesses <= MAX_WRONG_GUESSES){
       return 'P';
