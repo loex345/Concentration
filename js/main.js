@@ -1,5 +1,5 @@
 /*----- constants -----*/
-const MAX_WRONG_GUESSES = 100;
+const MAX_WRONG_GUESSES = 30;
 const PLACE_CARD = 'https://i.imgur.com/YcXGjgE.png';
 const GAME_PICS = [{ img: 'https://i.imgur.com/Pg2Fdbb.png', match: false, showing: false },
 { img: 'https://i.imgur.com/29fSWXu.png', match: false, showing: false },
@@ -77,8 +77,8 @@ function handlePlayerClicks(evt) {
    const card = cards[evt.target.id];
    // if clicked render for that image 
    //make second card and compare values 
-   //clear all cards
-   if (evt.target.id === 'main-El' || evt.target.tagName !=='IMG' || firstCard===card ) return;
+   //guards
+   if (evt.target.id === 'main-El' || evt.target.tagName !=='IMG' || firstCard===card || gameStatus==='L' || gameStatus=== 'W') return;
    if (firstCard) {
       secondCard=card;
       if (firstCard.img === card.img) {
@@ -98,10 +98,6 @@ function handlePlayerClicks(evt) {
    render();
 }
 
-function handleClick(evt) { //replay button
-   
-   render();
-}
 function renderMsg(){
    //add scores
    msgBoxThree.textContent=`Guess count :${wrongGuesses}  Guesses available:${MAX_WRONG_GUESSES}`;
@@ -113,20 +109,20 @@ function renderMsg(){
     }else if(gameStatus === 'W'){
       msgBox.textContent='Hold your wallets we have a Winner!' 
    }
-
+   playButton.style.visibility = gameStatus === 'L' || gameStatus ==='W' ? 'visible' : 'hidden'; 
 }
 function getGameStatus(){
+// and win logic for where all cards matched equals win
    const isWinner = cards.every(function(card) {
           return card.match;
    });
    console.log(isWinner);
    if (isWinner) return 'W';
-   if(wrongGuesses < MAX_WRONG_GUESSES){
+   if(wrongGuesses <= MAX_WRONG_GUESSES){
       return 'P';
    }
-   if(wrongGuesses > MAX_WRONG_GUESSES) return 'L';
+   if(wrongGuesses >= MAX_WRONG_GUESSES) return 'L';
 }
-      // and win logic for where all cards matched equals win
-
+      
    //if wronguesses are higher than allowed guesses game over
 
