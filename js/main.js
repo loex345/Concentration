@@ -43,7 +43,7 @@ function init() {
 
    render();
 }
-function randamNumGen(max) {
+function getrandamNumGen(max) {
    return Math.floor(Math.random() * max);
 }
 //get random card array
@@ -54,7 +54,7 @@ function getShufflePicts() {
       tempCards.push({ ...game_pic }, { ...game_pic });
    });
    while (tempCards.length) {
-      let rIdx = randamNumGen(tempCards.length);
+      let rIdx = getrandamNumGen(tempCards.length);
       let card = tempCards.splice(rIdx, 1)[0];
       cards.push(card);
    }
@@ -75,15 +75,16 @@ function handlePlayerClicks(evt) {
    //get id click
    const card = cards[evt.target.id];
    // if clicked render for that image 
-  if (evt.target.id === 'main-El' || ignoreClick || evt.target.tagName !=='IMG') return;
+  if (evt.target.id === 'main-El' || evt.target.tagName !=='IMG') return;
    if (firstCard) {
-      if (firstCard.img === card.img) {
+      if (firstCard.img === card.img && firstCard.img !== firstCard.img) {
          firstCard.match = true;
          card.match = true;
          msgBox.textContent = 'You have a match!' ; // need timer
          currentGameScore++
       } else {
          wrongGuesses++
+         msgBox.textContent='';
       }
       firstCard = null;
    } else {
@@ -106,17 +107,28 @@ function renderMsg(){
     }else if (gameStatus === 'O') {
       msgBox.textContent ='Game is over!';
       currentGameScore = 0;
-    }
+    }else if(gameStatus === 'W'){
+      msgBox.textContent='Hold your wallets we have a Winner!' 
+   }
 
 }
 function getGameStatus(){
+   function getIsAllCardsShowing(element,index, array){
+      cards.match === true
+   }
    if(wrongGuesses > MAX_WRONG_GUESSES) {   
    return 'O';
    }else if(wrongGuesses < MAX_WRONG_GUESSES){
    return 'P';
-   } else{
-      // and win logic for where all cards matched equals win
+    }else if(cards.every(getIsAllCardsShowing)===true) {
+       // and win logic for where all cards matched equals win
+     return 'W'
+
+    } 
+   else{
       init();
+      return 'O'
+    
    }
    //if wronguesses are higher than allowed guesses game over
 }
