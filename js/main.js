@@ -1,5 +1,5 @@
 /*----- constants -----*/
-const MAX_WRONG_GUESSES = 4;
+const MAX_WRONG_GUESSES = 100;
 const PLACE_CARD = 'https://i.imgur.com/YcXGjgE.png';
 const GAME_PICS = [{ img: 'https://i.imgur.com/Pg2Fdbb.png', match: false, showing: false },
 { img: 'https://i.imgur.com/29fSWXu.png', match: false, showing: false },
@@ -15,6 +15,7 @@ let cards = []; //object to record card informaton
 let gameStatus; //game in progress=P game is over =O
 let currentGameScore; // records number of matches 
 let firstCard;
+let secondCard;
 let ignoreClick;
 let highScore;
 let wrongGuesses;
@@ -75,9 +76,12 @@ function handlePlayerClicks(evt) {
    //get id click
    const card = cards[evt.target.id];
    // if clicked render for that image 
-  if (evt.target.id === 'main-El' || evt.target.tagName !=='IMG') return;
+   //make second card and compare values 
+   //clear all cards
+   if (evt.target.id === 'main-El' || evt.target.tagName !=='IMG' || firstCard===card ) return;
    if (firstCard) {
-      if (firstCard.img === card.img && firstCard.img !== firstCard.img) {
+      secondCard=card;
+      if (firstCard.img === card.img) {
          firstCard.match = true;
          card.match = true;
          msgBox.textContent = 'You have a match!' ; // need timer
@@ -90,7 +94,6 @@ function handlePlayerClicks(evt) {
    } else {
       firstCard = card;
    }
-   //TODO Put in Winning Logic 
    gameStatus = getGameStatus();
    render();
 }
@@ -102,9 +105,9 @@ function handleClick(evt) { //replay button
 function renderMsg(){
    //add scores
    msgBoxThree.textContent=`Guess count :${wrongGuesses}  Guesses available:${MAX_WRONG_GUESSES}`;
-    if(gameStatus === 'P'){
+    if(gameStatus === 'P' ){
       msgBoxTwo.textContent =`Current Score : ${currentGameScore}`;
-    }else if (gameStatus === 'O') {
+    }else if (gameStatus === 'L') {
       msgBox.textContent ='Game is over!';
       currentGameScore = 0;
     }else if(gameStatus === 'W'){
@@ -113,22 +116,17 @@ function renderMsg(){
 
 }
 function getGameStatus(){
-   function getIsAllCardsShowing(element,index, array){
-      cards.match === true
+   const isWinner = cards.every(function(card) {
+          return card.match;
+   });
+   console.log(isWinner);
+   if (isWinner) return 'W';
+   if(wrongGuesses < MAX_WRONG_GUESSES){
+      return 'P';
    }
-   if(wrongGuesses > MAX_WRONG_GUESSES) {   
-   return 'O';
-   }else if(wrongGuesses < MAX_WRONG_GUESSES){
-   return 'P';
-    }else if(cards.every(getIsAllCardsShowing)===true) {
-       // and win logic for where all cards matched equals win
-     return 'W'
-
-    } 
-   else{
-      init();
-      return 'O'
-    
-   }
-   //if wronguesses are higher than allowed guesses game over
+   if(wrongGuesses > MAX_WRONG_GUESSES) return 'L';
 }
+      // and win logic for where all cards matched equals win
+
+   //if wronguesses are higher than allowed guesses game over
+
