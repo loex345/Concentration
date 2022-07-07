@@ -28,9 +28,10 @@ div {
     padding: 20px;
     font-size: 70px;
     flex-wrap: wrap;
-    gap: 72px;
-    grid-template-columns: repeat(3, 1fr);
-    grid-row-start: 3;
+    gap: 4px;
+    grid-template-columns: repeat(2, 0.2fr 0.2fr);
+    grid-template-rows: repeat(2, 0.5fr);
+    grid-row-start: 2;
 }
 
 h1 {
@@ -38,11 +39,7 @@ h1 {
 }
 
 img {
-    width: 100%;
+    width: 50%;
     border-radius: 3vmin;
 }
 
-.placeholder {
-    background-image: url("https://i.imgur.com/YcXGjgE.png");
-    color: transparent;
-}

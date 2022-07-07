@@ -7,7 +7,8 @@ const GAME_PICS = [{ img: 'https://i.imgur.com/Pg2Fdbb.png', match: false, showi
 { img: 'https://i.imgur.com/GCkcUeQ.jpg', match: false, showing: false },
 { img: 'https://i.imgur.com/9uJxWtF.png', match: false, showing: false },
 { img: 'https://i.imgur.com/GwyUXfy.jpg', match: false, showing: false },
-{ img: 'https://i.imgur.com/yHFSBDq.jpg', match: false, showing: false }
+{ img: 'https://i.imgur.com/yHFSBDq.jpg', match: false, showing: false },
+{ img: 'https://i.imgur.com/5bKmCiX.jpg', match: false, showing: false },
 ]
 /*----- app's state (variables) -----*/
 let cards = []; //object to record card informaton 
@@ -23,8 +24,10 @@ const allDivImgs = document.querySelectorAll('main div img');
 const allDivs = document.querySelectorAll('div');
 const mainEl = document.getElementById('main-El');
 const msgBox = document.getElementById('msg-box');
+const msgBoxTwo = document.getElementById('Num-Mat');
+const msgBoxThree = document.getElementById('WrgGue');
 /*----- event listeners -----*/
-playButton.addEventListener('click', handleClick);  // for rendering the board
+playButton.addEventListener('click', init);  // for rendering the board
 mainEl.addEventListener('click', handlePlayerClicks); // for user interaction
 /*----- functions -----*/
 init();
@@ -63,7 +66,7 @@ function render() {
       const srcLnk = (card.match || card === firstCard) ? card.img : PLACE_CARD;
       imgsbyId.src = srcLnk;
    });
-   //to accept Userclicks 
+   
    //render Msg
    renderMsg();
 
@@ -72,12 +75,12 @@ function handlePlayerClicks(evt) {
    //get id click
    const card = cards[evt.target.id];
    // if clicked render for that image 
-  if (evt.target.id === 'main-El' || ignoreClick) return;
+  if (evt.target.id === 'main-El' || ignoreClick || evt.target.tagName !=='IMG') return;
    if (firstCard) {
       if (firstCard.img === card.img) {
          firstCard.match = true;
          card.match = true;
-         gameStatus = 'P';
+         msgBox.textContent = 'You have a match!' ; // need timer
          currentGameScore++
       } else {
          wrongGuesses++
@@ -87,6 +90,7 @@ function handlePlayerClicks(evt) {
       firstCard = card;
    }
    //TODO Put in Winning Logic 
+   gameStatus = getGameStatus();
    render();
 }
 
@@ -95,12 +99,24 @@ function handleClick(evt) { //replay button
    render();
 }
 function renderMsg(){
+   //add scores
+   msgBoxThree.textContent=`Guess count :${wrongGuesses}  Guesses available:${MAX_WRONG_GUESSES}`;
     if(gameStatus === 'P'){
-      msgBox.textContent = 'You have a match!';
+      msgBoxTwo.textContent =`Current Score : ${currentGameScore}`;
     }else if (gameStatus === 'O') {
       msgBox.textContent ='Game is over!';
+      currentGameScore = 0;
     }
 
-   
 }
-
+function getGameStatus(){
+   if(wrongGuesses > MAX_WRONG_GUESSES) {   
+   return 'O';
+   }else if(wrongGuesses < MAX_WRONG_GUESSES){
+   return 'P';
+   } else{
+      // and win logic for where all cards matched equals win
+      init();
+   }
+   //if wronguesses are higher than allowed guesses game over
+}
