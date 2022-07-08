@@ -18,4 +18,4 @@ Welcome to Concentration! This game is fun and relies on memory. It also know as
 
 # Next Steps
 - Add cards that are worth more points
-- dd a timer to end game after certain amount of time
+- Add a timer to end game after certain amount of time
