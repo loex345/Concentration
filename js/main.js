@@ -24,14 +24,16 @@ const playButton = document.getElementById('Play');
 const allDivImgs = document.querySelectorAll('main div img');
 const allDivs = document.querySelectorAll('div');
 const mainEl = document.getElementById('main-El');
-const msgBox = document.getElementById('msg-box');
-const msgBoxTwo = document.getElementById('Num-Mat');
-const msgBoxThree = document.getElementById('WrgGue');
+const msgBoxEl = document.getElementById('msg-box');
+const msgBoxTwoEl = document.getElementById('Num-Mat');
+const msgBoxThreeEl = document.getElementById('WrgGue');
 /*----- event listeners -----*/
 playButton.addEventListener('click', init);  // for rendering the board
 mainEl.addEventListener('click', handlePlayerClicks); // for user interaction
 /*----- functions -----*/
+
 init();
+
 function init() {
    //shuffle cards
    cards = getShufflePicts();
@@ -40,13 +42,15 @@ function init() {
    gameStatus = null;
    currentGameScore = 0;
    highScore = 0;
-   ignoreClick=false;
-   msgBox.textContent='';
+   ignoreClick = false;
+   msgBoxEl.textContent ='';
    render();
 }
+
 function getrandamNumGen(max) {
    return Math.floor(Math.random() * max);
 }
+
 //get random card array
 function getShufflePicts() {
    let tempCards = [];
@@ -72,6 +76,7 @@ function render() {
    renderMsg();
 
 }
+
 function handlePlayerClicks(evt) {
    //get id click
    const card = cards[evt.target.id];
@@ -88,7 +93,7 @@ function handlePlayerClicks(evt) {
          currentGameScore++
       } else {
          wrongGuesses++
-         msgBox.textContent='';
+         msgBoxEl.textContent='';
       }
       firstCard = null;
    } else {
@@ -98,19 +103,20 @@ function handlePlayerClicks(evt) {
    render();
 }
 
-function renderMsg(){
+function renderMsg() {
    //add scores
-   msgBoxThree.textContent=`Guess count :${wrongGuesses}  Guesses available:${MAX_WRONG_GUESSES+1}`;
+   msgBoxThreeEl.textContent=`Guess count :${wrongGuesses}  Guesses available:${MAX_WRONG_GUESSES+1}`;
     if(gameStatus === 'P' ){
-      msgBoxTwo.textContent =`Current Score : ${currentGameScore}`;
+      msgBoxTwoEl.textContent =`Current Score : ${currentGameScore}`;
     }else if (gameStatus === 'L') {
-      msgBox.textContent ='Game is over!';
+      msgBoxEl.textContent ='Game is over!';
     }else if(gameStatus === 'W'){
-      msgBox.textContent='Hold your wallets we have a Winner!' 
+      msgBoxEl.textContent='Hold your wallets we have a Winner!' 
    }
    playButton.style.visibility = gameStatus === 'L' || gameStatus ==='W' ? 'visible' : 'hidden'; 
 }
-function getGameStatus(){
+
+function getGameStatus() {
 // and win logic for where all cards matched equals win
    const isWinner = cards.every(function(card) {
           return card.match;
@@ -122,5 +128,5 @@ function getGameStatus(){
    if(wrongGuesses >= MAX_WRONG_GUESSES) return 'L';
 }
       
-   //if wronguesses are higher than allowed guesses game over
+   
 
