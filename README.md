@@ -18,7 +18,7 @@ Welcome to Concentration! This game is fun and relies on memory. It is also know
 
 # Getting Started
 
-[Click here to Play Concentration!] (https://loex345.github.io/Concentration/)
+[Click here to Play Concentration!](https://loex345.github.io/Concentration/)
 
 # Next Steps
 - Add cards that are worth more points
