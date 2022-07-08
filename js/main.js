@@ -21,8 +21,6 @@ let highScore;
 let wrongGuesses;
 /*----- cached element references -----*/
 const playButton = document.getElementById('Play');
-const allDivImgs = document.querySelectorAll('main div img');
-const allDivs = document.querySelectorAll('div');
 const mainEl = document.getElementById('main-El');
 const msgBoxEl = document.getElementById('msg-box');
 const msgBoxTwoEl = document.getElementById('Num-Mat');
@@ -89,7 +87,7 @@ function handlePlayerClicks(evt) {
       if (firstCard.img === card.img) {
          firstCard.match = true;
          card.match = true;
-         msgBox.textContent = 'You have a match!' ; // need timer
+         msgBoxEl.textContent = 'You have a match!' ; // need timer
          currentGameScore++
       } else {
          wrongGuesses++
@@ -117,7 +115,7 @@ function renderMsg() {
 }
 
 function getGameStatus() {
-// and win logic for where all cards matched equals win
+// win logic for where all cards matched equals win
    const isWinner = cards.every(function(card) {
           return card.match;
    });
