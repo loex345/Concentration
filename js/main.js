@@ -63,6 +63,7 @@ function getShufflePicts() {
    }
    return cards;
 }
+
 function render() {
    cards.forEach(function (card, idx) {
       const imgsbyId = document.getElementById(idx);
