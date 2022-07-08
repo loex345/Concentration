@@ -11,8 +11,8 @@ const GAME_PICS = [{ img: 'https://i.imgur.com/Pg2Fdbb.png', match: false, showi
 { img: 'https://i.imgur.com/5bKmCiX.jpg', match: false, showing: false },
 ]
 /*----- app's state (variables) -----*/
-let cards = []; //object to record card informaton 
-let gameStatus; //game in progress=P game is over =O
+let cards = []; // array of object to record card informaton 
+let gameStatus; //game in progress=P game is over =L
 let currentGameScore; // records number of matches 
 let firstCard;
 let secondCard;
