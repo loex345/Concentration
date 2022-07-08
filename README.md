@@ -8,14 +8,14 @@ Welcome to Concentration! This game is fun and relies on memory. It also know as
 
 # Technologies Used
 
--JavaScript
--Html
--Css
+- JavaScript
+- Html
+- Css
 
 # Getting Started
 
 [Click here to Play Concentration!] (https://loex345.github.io/Concentration/)
 
 # Next Steps
--Add cards that are worth more points
--Add a timer to end game after certain amount of time
+- Add cards that are worth more points
+- dd a timer to end game after certain amount of time
